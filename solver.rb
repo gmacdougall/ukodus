@@ -24,7 +24,9 @@ class Solver
   def hard_solveable?
     attempt = @sudoku
     empty_pos = attempt.empty.first
-    (1..9).flat_map do |candidate|
+
+    candidates = attempt.candidates(empty_pos / 9, empty_pos % 9)
+    ((1..9).to_a - candidates).flat_map do |candidate|
       new_puzzle = @sudoku.puzzle.dup
       new_puzzle[empty_pos] = candidate
 
