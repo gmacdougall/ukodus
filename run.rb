@@ -1,3 +1,4 @@
+require_relative './solver'
 require_relative './sudoku'
 require_relative './unsolver'
 require 'pry'

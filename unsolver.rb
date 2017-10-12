@@ -9,7 +9,7 @@ class Unsolver
       proposed_arr = attempt.puzzle.dup
       proposed_arr[n] = ' '
       proposed = Sudoku.new(proposed_arr)
-      attempt = proposed if proposed.solveable?
+      attempt = proposed if Solver.new(proposed).solveable?
     end
     attempt
   end

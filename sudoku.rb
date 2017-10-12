@@ -42,20 +42,6 @@ class Sudoku
     result.join("\n")
   end
 
-  def solveable?
-    solveable = true
-    @puzzle.each_with_index do |n, idx|
-      col = idx % 9
-      row = idx / 9
-
-      if (n == ' ')
-        solveable = false unless
-          (rows[row] + columns[col] + boxes[box_index(row, col)]).uniq.length === 9
-      end
-    end
-    solveable
-  end
-
   def score
     81 - @puzzle.reject { |s| s === ' ' }.count
   end
