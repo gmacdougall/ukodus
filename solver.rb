@@ -25,14 +25,8 @@ class Solver
   private
 
   def single_candidate(row, col)
-    candidates = (
-      @sudoku.rows[row] +
-      @sudoku.columns[col] +
-      @sudoku.boxes[@sudoku.box_index(row, col)]
-    ).uniq
-
-    if candidates.length === 9
-      ((1..9).to_a - candidates).first
+    if @sudoku.candidates(row, col).length === 8
+      ((1..9).to_a - @sudoku.candidates(row, col)).first
     else
       nil
     end

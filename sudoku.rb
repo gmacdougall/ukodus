@@ -45,4 +45,12 @@ class Sudoku
   def score
     81 - @puzzle.reject { |s| s === ' ' }.count
   end
+
+  def candidates(row, col)
+    (
+      rows[row] +
+      columns[col] +
+      boxes[box_index(row, col)]
+    ).reject { |str| str == ' ' }.uniq
+  end
 end
