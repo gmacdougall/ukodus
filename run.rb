@@ -167,10 +167,12 @@ puzzles << """
 
 score = 0
 puzzles.each do |puzzle|
-  puzzle = puzzles.first.gsub(/[^\d]/, '').split('')
+  puzzle = puzzle.gsub(/[^\d]/, '').split('')
   sudoku = Sudoku.new(puzzle)
   unsolver = Unsolver.new(sudoku)
-  score += unsolver.go.score
+  result = unsolver.go
+  score += result.score
+  puts result
 end
 
 
