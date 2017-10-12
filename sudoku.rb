@@ -53,4 +53,12 @@ class Sudoku
       boxes[box_index(row, col)]
     ).reject { |str| str == ' ' }.uniq
   end
+
+  def complete?
+    score == 0
+  end
+
+  def incomplete?
+    !complete?
+  end
 end

@@ -4,22 +4,21 @@ class Solver
   end
 
   def solveable?
-    previous_iteration = nil
-    iteration = @sudoku
-    while (previous_iteration.nil? || iteration.score != previous_iteration.score) do
-      previous_iteration = iteration
-      iteration.puzzle.each_with_index do |n, idx|
-        col = idx % 9
-        row = idx / 9
-
-        if (single_candidate(row, col))
-          new_puzzle = iteration.puzzle.dup
-          new_puzzle[idx] = single_candidate(row, col)
-          iteration = Sudoku.new(new_puzzle)
+    attempt = @sudoku
+    previous_score = -1
+    while (attempt.incomplete? && attempt.score != previous_score)
+      attempt.puzzle.each_with_index do |n, idx|
+        if (n === ' ')
+          if single_candidate(idx / 9, idx % 9)
+            new_puzzle = attempt.puzzle.dup
+            new_puzzle[idx] = single_candidate(idx / 9, idx % 9)
+            attempt = Sudoku.new(new_puzzle)
+          end
         end
       end
+      previous_score = attempt.score
     end
-    iteration.score === 0
+    attempt.complete?
   end
 
   private
