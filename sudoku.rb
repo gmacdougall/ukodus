@@ -2,7 +2,7 @@ class Sudoku
   attr_reader :puzzle
 
   def initialize(puzzle)
-    @puzzle = puzzle
+    @puzzle = puzzle.map { |val| val == ' ' ? val : val.to_i }
   end
 
   def [](row, column)

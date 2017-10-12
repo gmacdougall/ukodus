@@ -25,7 +25,7 @@ class Solver
 
   def single_candidate(attempt, row, col)
     if attempt.candidates(row, col).length === 8
-      result = ((1..9).map(&:to_s).to_a - attempt.candidates(row, col))
+      result = ((1..9).to_a - attempt.candidates(row, col))
       result.first
     else
       nil
