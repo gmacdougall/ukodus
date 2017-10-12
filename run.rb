@@ -1,4 +1,5 @@
 require_relative './sudoku'
+require_relative './unsolver'
 require 'pry'
 
 puzzles = []
@@ -163,6 +164,13 @@ puzzles << """
 +-------+-------+-------+
 """
 
-puzzle = puzzles.first.gsub(/[^\d]/, '').split('')
-sudoku = Sudoku.new(puzzle)
-puts sudoku
+score = 0
+puzzles.each do |puzzle|
+  puzzle = puzzles.first.gsub(/[^\d]/, '').split('')
+  sudoku = Sudoku.new(puzzle)
+  unsolver = Unsolver.new(sudoku)
+  score += unsolver.go.score
+end
+
+
+puts "#{score}!!!"
