@@ -10,13 +10,19 @@ class Solver
       row = idx / 9
 
       if (n == ' ')
-        solveable = false unless (
-          @sudoku.rows[row] +
-          @sudoku.columns[col] +
-          @sudoku.boxes[@sudoku.box_index(row, col)]
-        ).uniq.length === 9
+        solveable = false unless single_candidate?(row, col)
       end
     end
     solveable
+  end
+
+  private
+
+  def single_candidate?(row, col)
+    (
+      @sudoku.rows[row] +
+      @sudoku.columns[col] +
+      @sudoku.boxes[@sudoku.box_index(row, col)]
+    ).uniq.length === 9
   end
 end
