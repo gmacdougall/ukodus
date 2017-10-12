@@ -163,5 +163,6 @@ puzzles << """
 +-------+-------+-------+
 """
 
-sudoku = Sudoku.new(puzzles.first)
+puzzle = puzzles.first.gsub(/[^\d]/, '').split('')
+sudoku = Sudoku.new(puzzle)
 puts sudoku

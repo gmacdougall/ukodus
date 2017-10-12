@@ -1,6 +1,8 @@
 class Sudoku
+  attr_reader :puzzle
+
   def initialize(puzzle)
-    @puzzle = puzzle.gsub(/[^\d]/, '').split('')
+    @puzzle = puzzle
   end
 
   def [](row, column)
