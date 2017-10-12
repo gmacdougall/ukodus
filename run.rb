@@ -166,7 +166,7 @@ puzzles << """
 """
 
 score = 0
-puzzles.first(1).each do |puzzle|
+puzzles.each do |puzzle|
   puzzle = puzzle.gsub(/[^\d]/, '').split('')
   sudoku = Sudoku.new(puzzle)
   unsolver = Unsolver.new(sudoku)

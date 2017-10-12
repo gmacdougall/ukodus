@@ -25,7 +25,8 @@ class Solver
 
   def single_candidate(row, col)
     if @sudoku.candidates(row, col).length === 8
-      ((1..9).to_a - @sudoku.candidates(row, col)).first
+      result = ((1..9).map(&:to_s).to_a - @sudoku.candidates(row, col))
+      result.first
     else
       nil
     end
