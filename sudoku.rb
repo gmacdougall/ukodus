@@ -23,6 +23,13 @@ class Sudoku
   end
 
   def to_s
-    @puzzle.each_slice(9).map { |n| n.join(' ') }.join("\n")
+    result = []
+    result << "+-------+-------+-------+"
+    rows.each_with_index do |row, idx|
+      result << '| ' + row.each_slice(3).map { |a| a.join(' ') }.join(' | ') + ' |'
+      result << "+-------+-------+-------+" if idx == 2 || idx == 5
+    end
+    result << "+-------+-------+-------+"
+    result.join("\n")
   end
 end
