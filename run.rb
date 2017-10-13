@@ -167,7 +167,7 @@ puzzles << """
 
 score = 0
 puzzles.each do |puzzle|
-  puzzle = puzzle.gsub(/[^\d]/, '').split('')
+  puzzle = puzzle.gsub(/[^\d]/, '').split('').map { |y| y.to_i }
   sudoku = Sudoku.new(puzzle)
   unsolver = Unsolver.new(sudoku)
   result = unsolver.go
