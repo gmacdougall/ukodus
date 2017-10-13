@@ -21,6 +21,25 @@ class Solver
     attempt.complete?
   end
 
+  def hard_solveable?
+    attempt = @sudoku
+    empty_pos = attempt.empty.first
+    (1..9).flat_map do |candidate|
+      new_puzzle = @sudoku.puzzle.dup
+      new_puzzle[empty_pos] = candidate
+
+      new_sudoku = Sudoku.new(new_puzzle)
+
+      if new_sudoku.broken?
+        false
+      elsif new_sudoku.complete?
+        true
+      else
+        Solver.new(new_sudoku).hard_solveable?
+      end
+    end.select { |y| y }.count == 1
+  end
+
   private
 
   def single_candidate(attempt, row, col)
