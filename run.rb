@@ -165,6 +165,22 @@ puzzles << """
 +-------+-------+-------+
 """
 
+puzzles = [ """
++-------+-------+-------+
+| 4 7 1 | 6 3 9 | 2 5 8 |
+| 2 3 8 | 5 4 7 | 6 9 1 |
+| 9 5 6 | 8 1 2 | 7 3 4 |
++-------+-------+-------+
+| 5 1 2 | 3 7 8 | 4 6 9 |
+| 7 6 4 | 1 9 5 | 8 2 3 |
+| 3 8 9 | 4 2 6 | 1 7 5 |
++-------+-------+-------+
+| 6 4 3 | 2 5 1 | 9 8 7 |
+| 8 9 5 | 7 6 4 | 3 1 2 |
+| 1 2 7 | 9 8 3 | 5 4 6 |
++-------+-------+-------+
+""" ]
+
 score = 0
 puzzles.each do |puzzle|
   puzzle = puzzle.gsub(/[^\d]/, '').split('').map { |y| y.to_i }
@@ -172,6 +188,9 @@ puzzles.each do |puzzle|
   unsolver = Unsolver.new(sudoku)
   result = unsolver.go
   score += result.score
+
+  solver = Solver.new(result)
+
   puts result
 end
 

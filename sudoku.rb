@@ -31,6 +31,21 @@ class Sudoku
     result
   end
 
+  def empty
+    @puzzle.each_with_index.map do |elem, index|
+      [index, elem]
+    end.select { |index, elem| elem == " " }.map(&:first)
+  end
+
+  def broken?
+    [rows, boxes, columns].any? do |set|
+      set.any? do |list|
+        count = list.reject { |y| y == " " }
+        count.size != count.uniq.size
+      end
+    end
+  end
+
   def to_s
     result = []
     result << "+-------+-------+-------+"
