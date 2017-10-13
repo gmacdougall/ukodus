@@ -188,8 +188,7 @@ puzzles.each do |puzzle|
   unsolver = Unsolver.new(sudoku)
   result = unsolver.go
   score += result.score
-
-  solver = Solver.new(result)
+  puts score
 
   puts result
 end
